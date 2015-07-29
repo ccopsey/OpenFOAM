@@ -1,0 +1,55 @@
+#!/bin/bash
+
+module load gmp/gnu/6.0.0-temp
+module load mpfr/gnu/3.1.2-temp
+module load mpc/gnu/1.0.2-temp
+
+source settings.sh
+
+NAME="gcc"
+VERSION="4.9.2"
+URL="ftp://ftp.mirrorservice.org/sites/sourceware.org/pub/gcc/releases/gcc-4.9.2/gcc-4.9.2.tar.gz"
+
+ARCHIVE_PREFIX="${NAME}-${VERSION}"
+ARCHIVE_SUFFIX="tar.gz"
+SRC_DIR="$BUILD_DIR/$NAME"
+SRC_PATH="${SRC_DIR}/${ARCHIVE_PREFIX}"
+
+#####
+
+BUILD_PATH="${SRC_DIR}/${ARCHIVE_PREFIX}-temp-build"
+ARCHIVE_FILE="${ARCHIVE_PREFIX}.${ARCHIVE_SUFFIX}"
+ARCHIVE_PATH="${ARCHIVES_DIR}/${ARCHIVE_FILE}"
+
+if [ ! -d ${ARCHIVES_DIR} ]
+then
+  mkdir -p ${ARCHIVES_DIR}
+fi
+
+if [ ! -f ${ARCHIVE_PATH} ]
+then
+  wget ${URL} -O ${ARCHIVE_PATH}
+fi
+
+if [ ! -d ${SRC_DIR} ]
+then
+  mkdir -p ${SRC_DIR}
+fi
+
+cd ${SRC_DIR}
+
+if [ ! -d ${SRC_PATH} ]
+then
+  tar -zxf ${ARCHIVE_PATH}
+fi
+
+if [ ! -d ${BUILD_PATH} ]
+then
+  mkdir -p ${BUILD_PATH}
+fi
+
+cd ${BUILD_PATH}
+
+${SRC_PATH}/configure --disable-multilib --enable-languages=c,c++ --with-gmp=${GMP_ROOT} --with-mpfr=${MPFR_ROOT} --with-mpc=${MPC_ROOT} --prefix=${INSTALL_PREFIX}/${NAME}/${VERSION}-temp \
+&& make -j ${CORES} \
+&& make install

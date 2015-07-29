@@ -1,0 +1,54 @@
+#!/bin/bash
+
+module load gmp/gnu/6.0.0-temp
+
+source settings.sh
+
+NAME="mpfr"
+VERSION="3.1.2"
+LABEL="gnu-temp"
+URL="http://www.mpfr.org/mpfr-3.1.2/mpfr-3.1.2.tar.gz"
+
+ARCHIVE_PREFIX="${NAME}-${VERSION}"
+ARCHIVE_SUFFIX="tar.gz"
+SRC_DIR="$BUILD_DIR/$NAME"
+SRC_PATH="${SRC_DIR}/${ARCHIVE_PREFIX}"
+
+#####
+
+BUILD_PATH="${SRC_DIR}/${ARCHIVE_PREFIX}-${LABEL}"
+ARCHIVE_FILE="${ARCHIVE_PREFIX}.${ARCHIVE_SUFFIX}"
+ARCHIVE_PATH="${ARCHIVES_DIR}/${ARCHIVE_FILE}"
+
+if [ ! -d ${ARCHIVES_DIR} ]
+then
+  mkdir -p ${ARCHIVES_DIR}
+fi
+
+if [ ! -f ${ARCHIVE_PATH} ]
+then
+  wget ${URL} -O ${ARCHIVE_PATH}
+fi
+
+if [ ! -d ${SRC_DIR} ]
+then
+  mkdir -p ${SRC_DIR}
+fi
+
+cd ${SRC_DIR}
+
+if [ ! -d ${SRC_PATH} ]
+then
+  tar -zxf ${ARCHIVE_PATH}
+fi
+
+if [ ! -d ${BUILD_PATH} ]
+then
+  mkdir -p ${BUILD_PATH}
+fi
+
+cd ${BUILD_PATH}
+
+${SRC_PATH}/configure --with-gmp=${GMP_ROOT} --prefix=${INSTALL_PREFIX}/${NAME}/${VERSION}/${LABEL} \
+&& make -j ${CORES} \
+&& make install

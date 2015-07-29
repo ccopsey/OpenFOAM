@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ROOT_DIR="/opt/OpenFOAM"
+ARCHIVES_DIR="$ROOT_DIR/Archives"
+BUILD_DIR="$ROOT_DIR/Build"
+INSTALL_PREFIX="$ROOT_DIR"
+
+CORES=8
+

@@ -1,0 +1,54 @@
+#!/bin/bash
+
+module load intel
+
+source settings.sh
+
+NAME="openmpi"
+VERSION="1.6.5"
+LABEL="intel"
+URL="http://www.open-mpi.org/software/ompi/v1.6/downloads/openmpi-1.6.5.tar.gz"
+
+ARCHIVE_PREFIX="${NAME}-${VERSION}"
+ARCHIVE_SUFFIX="tar.gz"
+SRC_DIR="$BUILD_DIR/$NAME"
+SRC_PATH="${SRC_DIR}/${ARCHIVE_PREFIX}"
+
+#####
+
+BUILD_PATH="${SRC_PATH}-${LABEL}"
+ARCHIVE_FILE="${ARCHIVE_PREFIX}.${ARCHIVE_SUFFIX}"
+ARCHIVE_PATH="${ARCHIVES_DIR}/${ARCHIVE_FILE}"
+
+if [ ! -d ${ARCHIVES_DIR} ]
+then
+  mkdir -p ${ARCHIVES_DIR}
+fi
+
+if [ ! -f ${ARCHIVE_PATH} ]
+then
+  wget ${URL} -O ${ARCHIVE_PATH}
+fi
+
+if [ ! -d ${SRC_DIR} ]
+then
+  mkdir -p ${SRC_DIR}
+fi
+
+cd ${SRC_DIR}
+
+if [ ! -d ${SRC_PATH} ]
+then
+  tar -zxf ${ARCHIVE_PATH}
+fi
+
+if [ ! -d ${BUILD_PATH} ]
+then
+  mkdir -p ${BUILD_PATH}
+fi
+
+cd ${BUILD_PATH}
+
+${SRC_PATH}/configure CC=icc CXX=icpc --disable-mpi-f77 --disable-mpi-f90 --prefix=${INSTALL_PREFIX}/${NAME}/${VERSION}/${LABEL} \
+&& make -j ${CORES} \
+&& make install

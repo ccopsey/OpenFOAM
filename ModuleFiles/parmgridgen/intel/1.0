@@ -1,0 +1,21 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+  global dotversion
+  puts stderr "\tParMGridGen 1.0 (Intel)"
+}
+
+module-whatis "ParMGridGen 1.0 (Intel)"
+
+conflict parmgridgen
+
+set		root			/opt/OpenFOAM/parmgridgen/1.0/intel
+
+setenv		PARMGRIDGEN_ROOT	$root
+setenv		PARMGRIDGEN_INCLUDE_DIR	$root/include
+
+prepend-path	PATH			$root/bin
+prepend-path	LD_LIBRARY_PATH		$root/lib
+prepend-path	LIBRARY_PATH		$root/lib
+prepend-path	MANPATH			$root/share/man
+
