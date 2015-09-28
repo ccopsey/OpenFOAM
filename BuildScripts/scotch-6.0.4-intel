@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source ${MODULESHOME}/init/bash
-module load openfoam/intel
+module load intel
 module load openfoam/zlib/intel/1.2.8
 module load openfoam/openmpi/intel/1.8.7
 

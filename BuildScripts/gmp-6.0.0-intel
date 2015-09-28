@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source ${MODULESHOME}/init/bash
-module load openfoam/intel
+module load intel
 
 source settings.sh
 
@@ -17,7 +17,7 @@ SRC_PATH="${SRC_DIR}/${ARCHIVE_PREFIX}"
 
 #####
 
-source /opt/intel/bin/compilervars.sh intel64
+source ${INTEL_ROOT}/bin/compilervars.sh intel64
 
 BUILD_PATH="${SRC_PATH}-${LABEL}"
 ARCHIVE_FILE="${ARCHIVE_PREFIX}.${ARCHIVE_SUFFIX}"
