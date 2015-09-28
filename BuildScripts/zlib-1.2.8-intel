@@ -1,7 +1,8 @@
 #!/bin/bash
 
-module load intel/15.0.3
-module load cmake/gnu/3.0.2
+source ${MODULESHOME}/init/bash
+module load openfoam/intel
+module load openfoam/cmake/gnu/3.0.2
 
 source settings.sh
 

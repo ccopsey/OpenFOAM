@@ -1,7 +1,7 @@
 #!/bin/bash
 
-module load gcc/4.9.2
-module load cmake/gnu/3.0.2
+module load openfoam/gcc/4.9.2
+module load openfoam/cmake/gnu/3.0.2
 
 source settings.sh
 

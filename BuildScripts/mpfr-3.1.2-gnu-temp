@@ -1,6 +1,7 @@
 #!/bin/bash
 
-module load gmp/gnu/6.0.0-temp
+source ${MODULESHOME}/init/bash
+module load openfoam/gmp/gnu/6.0.0-temp
 
 source settings.sh
 

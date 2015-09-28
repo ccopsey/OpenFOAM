@@ -1,0 +1,20 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+  global dotversion
+  puts stderr "\tMPFR 3.1.2 (GNU TEMP)"
+}
+
+module-whatis "MPFR 3.1.2 (GNU TEMP)"
+
+conflict mpfr
+
+set		root			$env(HOME)/OpenFOAM/Dependencies/mpfr/3.1.2/gnu-temp
+
+setenv		MPFR_ROOT		$root
+setenv		MPFR_INCLUDE_DIR	$root/include
+setenv		MPFR_LIBRARY		$root/lib/libmpfr.so
+
+prepend-path	PATH			$root/bin
+prepend-path	LD_LIBRARY_PATH		$root/lib
+

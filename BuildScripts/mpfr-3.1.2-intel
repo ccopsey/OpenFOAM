@@ -1,14 +1,15 @@
 #!/bin/bash
 
-module load intel/15.0.3
-module load gmp/intel/6.0.0
+source ${MODULESHOME}/init/bash
+module load openfoam/intel
+module load openfoam/gmp/intel/6.0.0
 
 source settings.sh
 
 NAME="mpfr"
 VERSION="3.1.2"
 LABEL="intel"
-URL="http://www.mpfr.org/mpfr-current/mpfr-3.1.2.tar.gz"
+URL="http://www.mpfr.org/mpfr-3.1.2/mpfr-3.1.2.tar.gz"
 
 ARCHIVE_PREFIX="${NAME}-${VERSION}"
 ARCHIVE_SUFFIX="tar.gz"

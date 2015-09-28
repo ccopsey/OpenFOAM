@@ -1,7 +1,8 @@
 #!/bin/bash
 
-module load intel/15.0.3
-module load openmpi/intel/1.6.5
+source ${MODULESHOME}/init/bash
+module load openfoam/intel
+module load openfoam/openmpi/intel/1.8.7
 
 source settings.sh
 

@@ -1,18 +1,18 @@
 #!/bin/bash
 
-module load intel/15.0.3
-module load cmake/gnu/3.0.2
-module load boost/intel/1.57.0
-module load cgal/intel/4.6.1
-module load gmp/intel/6.0.0
-module load mpfr/intel/3.1.2
-module load parmgridgen/intel/1.0
-module load zlib/intel/1.2.8
-module load flex/intel/2.5.39
-module load metis/intel/5.1.0
-module load parmetis/intel/4.0.3
-module load openmpi/intel/1.6.5
-module load scotch/intel/6.0.4
+source ${MODULESHOME}/init/bash
+module load openfoam/intel
+module load openfoam/boost/intel/1.57.0
+module load openfoam/cgal/intel/4.6.1
+module load openfoam/gmp/intel/6.0.0
+module load openfoam/mpfr/intel/3.1.2
+module load openfoam/parmgridgen/intel/1.0
+module load openfoam/zlib/intel/1.2.8
+module load openfoam/flex/intel/2.5.39
+module load openfoam/metis/intel/5.1.0
+module load openfoam/parmetis/intel/4.0.3
+module load openfoam/openmpi/intel/1.6.5
+module load openfoam/scotch/intel/6.0.4
 
 source settings.sh
 
@@ -23,12 +23,6 @@ LABEL="intel"
 ARCHIVE_PREFIX="${NAME}-${VERSION}"
 
 BUILD_PATH="${ROOT_DIR}/${ARCHIVE_PREFIX}"
-
-if [ ! -d ${BUILD_PATH} ]
-then
-  cd ${ROOT_DIR}
-  git clone https://github.com/OpenFOAM/OpenFOAM-dev.git ${ARCHIVE_PREFIX}-${LABEL}
-fi
 
 cd $BUILD_PATH
 

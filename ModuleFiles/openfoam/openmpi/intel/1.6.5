@@ -1,0 +1,19 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+  global dotversion
+  puts stderr "\tOpenMPI 1.6.5 (Intel)"
+}
+
+module-whatis "OpenMPI 1.6.5 (Intel)"
+
+conflict mpi
+
+set		root			$env(HOME)/OpenFOAM/openmpi/1.6.5/intel
+
+setenv		OPENMPI_ROOT		$root
+setenv		OPENMPI_INCLUDE_DIR	$root/include
+
+prepend-path	PATH			$root/bin
+prepend-path	LD_LIBRARY_PATH		$root/lib
+

@@ -1,8 +1,9 @@
 #!/bin/bash
 
-module load gmp/gnu/6.0.0-temp
-module load mpfr/gnu/3.1.2-temp
-module load mpc/gnu/1.0.2-temp
+source ${MODULESHOME}/init/bash
+module load openfoam/gmp/gnu/6.0.0-temp
+module load openfoam/mpfr/gnu/3.1.2-temp
+module load openfoam/mpc/gnu/1.0.2-temp
 
 source settings.sh
 

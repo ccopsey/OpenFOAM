@@ -1,0 +1,20 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+  global dotversion
+  puts stderr "\tGMP 6.0.0 (GNU TEMP)"
+}
+
+module-whatis "GMP 6.0.0 (GNU TEMP)"
+
+conflict gmp
+
+set		root		$env(HOME)/OpenFOAM/Dependencies/gmp/6.0.0/gnu-temp
+
+setenv		GMP_ROOT	$root
+setenv		GMP_INCLUDE_DIR	$root/include
+setenv		GMP_LIBRARY	$root/lib/libgmp.so
+
+prepend-path	PATH		$root/bin
+prepend-path	LD_LIBRARY_PATH	$root/lib
+

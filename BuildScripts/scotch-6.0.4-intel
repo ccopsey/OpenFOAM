@@ -1,8 +1,9 @@
 #!/bin/bash
 
-module load intel
-module load zlib/intel/1.2.8
-module load openmpi/intel/1.6.5
+source ${MODULESHOME}/init/bash
+module load openfoam/intel
+module load openfoam/zlib/intel/1.2.8
+module load openfoam/openmpi/intel/1.8.7
 
 source settings.sh
 
@@ -54,6 +55,6 @@ cd ${BUILD_PATH}/src
 
 mkdir -p ${INSTALL_PREFIX}/${NAME}/${VERSION}/${LABEL}
 
-cat Make.inc/Makefile.inc.i686_pc_linux2.shlib | sed -e 's|-lz|-L${ZLIB_LIBRARY_DIR} -lz|g' -e 's|gcc|mpicc|g' > Makefile.inc
+cat Make.inc/Makefile.inc.i686_pc_linux2.shlib | sed -e 's|-lz|-L${ZLIB_LIBRARY_DIR} -lz|g' -e 's|gcc|mpicc|g' -e 's| -DSCOTCH_PTHREAD||g' > Makefile.inc
 make ptscotch \
 && make prefix=${INSTALL_PREFIX}/${NAME}/${VERSION}/${LABEL} install

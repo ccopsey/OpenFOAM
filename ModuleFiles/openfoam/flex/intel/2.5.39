@@ -1,0 +1,22 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tflex 2.5.39 (Intel)"
+}
+ 
+module-whatis "flex 2.5.39 (Intel)"
+
+conflict flex
+
+set		root			$env(HOME)/OpenFOAM/Dependencies/flex/2.5.39/intel
+
+setenv		FLEX_ROOT		$root
+setenv		FLEX_INCLUDE_PATH	$root/include
+
+prepend-path	PATH			$root/bin
+prepend-path	CPATH           	$root/include
+prepend-path	LD_LIBRARY_PATH		$root/lib
+prepend-path	LIBRARY_PATH		$root/lib
+prepend-path	MANPATH			$root/share/man
+

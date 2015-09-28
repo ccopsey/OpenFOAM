@@ -1,10 +1,11 @@
 #!/bin/bash
 
-module load intel/15.0.3
-module load cmake/gnu/3.0.2
-module load boost/intel/1.57.0
-module load gmp/intel/6.0.0
-module load mpfr/intel/3.1.2
+source ${MODULESHOME}/init/bash
+module load openfoam/intel
+module load openfoam/cmake/gnu/3.0.2
+module load openfoam/boost/intel/1.57.0
+module load openfoam/gmp/intel/6.0.0
+module load openfoam/mpfr/intel/3.1.2
 
 source settings.sh
 
