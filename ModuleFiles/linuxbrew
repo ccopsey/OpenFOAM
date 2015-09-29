@@ -1,0 +1,18 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+  global dotversion
+  puts stderr "\tLinuxBrew"
+}
+
+module-whatis "LinuxBrew"
+
+conflict linuxbrew
+
+set		root			$env(HOME)/.linuxbrew
+
+setenv		LINUXBREW_ROOT		$root
+
+prepend-path	PATH			$root/bin
+prepend-path	MANPATH			$root/man
+prepend-path	INFOPATH		$root/infopath
